@@ -22,8 +22,11 @@ guessInput.addEventListener("change", (e) => {
   let guessedValue = parseInt(e.target.value);
   guessInput.value = "";
   tries++;
-
-  if (randomNumber === guessedValue) {
+  if (guessedValue < 1 || guessedValue > 100) {
+    guessInput.placeholder = "Out of range!";
+    setTimeout(() => {}, 1000);
+    tries--;
+  } else if (randomNumber === guessedValue) {
     showResult.innerHTML = `Congrats! Your score: ${score(tries, totaltries)}`;
     guessInput.placeholder = `${randomNumber}`;
     guessInput.disabled = true;
