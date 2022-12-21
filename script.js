@@ -10,11 +10,8 @@ let totaltries = 5;
 //score function
 const score = (tries, totaltries) => {
   let result = Math.round(100 - ((tries - 1) / totaltries) * 100);
-  console.log(tries);
   return result;
 };
-
-console.log(randomNumber);
 
 function randomise(n) {
   return Math.floor(1 + Math.random() * (n - 1));
@@ -54,8 +51,8 @@ function resetGame() {
   guessInput.innerHTML = "";
   guessInput.placeholder = "Guess 1 to 100!";
   randomNumber = randomise(100);
-  console.log(randomNumber);
   tries = 0;
   guessInput.disabled = false;
   showResult.innerHTML = "";
+  guessInput.focus();
 }
