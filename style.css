@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+
+input {
+  text-align: center;
+  font-family: monospace;
+  height: 3rem;
+  width: 13rem;
+  outline: none;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1.1rem;
+  box-shadow: 0 0 2rem 0.01rem rgb(214, 212, 212);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+span#up {
+  color: green;
+  font-size: 1.5rem;
+}
+span#down {
+  color: red;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,6 @@
+.vscode
+.vscode/*      # Maybe .vscode/**/* instead - see comments
+# Ignore all local history of files
+
+**/.history
+.DS_Store
