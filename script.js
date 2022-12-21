@@ -1,23 +1,39 @@
+//event listeners
 let guessInput = document.getElementById("guess");
 let showResult = document.getElementById("show");
 
+//initial variables
 let randomNumber = randomise(100);
 let tries = 0;
 let totaltries = 5;
+
+//score function
 const score = (tries, totaltries) => {
-  let result = Math.round(100 - (tries / (totaltries + 1)) * 100);
+  let result = Math.round(100 - ((tries - 1) / totaltries) * 100);
+  console.log(tries);
   return result;
 };
 
+console.log(randomNumber);
+
 function randomise(n) {
-  return Math.floor(Math.random() * n);
+  return Math.floor(1 + Math.random() * (n - 1));
 }
 
+//Guessing function
 guessInput.addEventListener("change", (e) => {
   let guessedValue = parseInt(e.target.value);
   guessInput.value = "";
   tries++;
-  if (tries == totaltries + 1) {
+
+  if (randomNumber === guessedValue) {
+    showResult.innerHTML = `Congrats! Your score: ${score(tries, totaltries)}`;
+    guessInput.placeholder = `${randomNumber}`;
+    guessInput.disabled = true;
+    setTimeout(() => {
+      resetGame();
+    }, 4000);
+  } else if (tries == totaltries) {
     showResult.innerHTML = `Game Over! The number was ${randomNumber}!`;
     guessInput.placeholder = "Game Over!";
     guessInput.disabled = true;
@@ -27,22 +43,13 @@ guessInput.addEventListener("change", (e) => {
   } else if (randomNumber > guessedValue) {
     guessInput.placeholder = "Try higher number!";
     showResult.innerHTML = `<span id="up"> &#8593; </span> ${guessedValue}:  ${tries} of ${totaltries}`;
-    console.log(e.target.value);
   } else if (randomNumber < guessedValue) {
     guessInput.placeholder = "Try lower number!";
     showResult.innerHTML = `<span id="down"> &#8595; </span> ${guessedValue}:  ${tries} of ${totaltries}`;
-  } else {
-    showResult.innerHTML = `Congrats! Your score: ${score(tries, totaltries)}`;
-    guessInput.placeholder = `${randomNumber}`;
-    guessInput.disabled = true;
-    setTimeout(() => {
-      resetGame();
-    }, 4000);
   }
 });
 
-//reset game
-
+//Reset the Game
 function resetGame() {
   guessInput.innerHTML = "";
   guessInput.placeholder = "Guess 1 to 100!";
